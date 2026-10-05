@@ -1,0 +1,8 @@
+:root{
+  --aluvity-indigo:#351951;
+  --aluvity-teal:#00B5AB;
+  --aluvity-white:#FFFFFF;
+  --aluvity-near-black:#111111;
+  --font-brand:'Plus Jakarta Sans',system-ui,sans-serif;
+}
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
