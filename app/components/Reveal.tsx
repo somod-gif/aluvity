@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, type ReactNode, type Ref } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 
 type RevealProps = {
   children: ReactNode;
@@ -20,10 +20,16 @@ export default function Reveal({
   className = "",
   as: Tag = "div",
 }: RevealProps) {
-  const ref = useRef<HTMLElement>(null);
+  const nodeRef = useRef<HTMLElement | null>(null);
+
+  // Callback ref accepts any element type, so the polymorphic `Tag` below
+  // always gets a compatible ref without unsafe casts.
+  const setRef = (node: HTMLElement | null) => {
+    nodeRef.current = node;
+  };
 
   useEffect(() => {
-    const node = ref.current;
+    const node = nodeRef.current;
     if (!node) return;
 
     if (
@@ -52,7 +58,7 @@ export default function Reveal({
 
   return (
     <Tag
-      ref={ref as Ref<HTMLElement>}
+      ref={setRef}
       className={`reveal ${className}`}
       style={delay ? { transitionDelay: `${delay}ms` } : undefined}
     >
